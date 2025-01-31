@@ -15,7 +15,7 @@ services:
       - app_network
     volumes:
       - ./orchestrator/src/:/app/orchestrator/src/
-    command: cargo run
+    command: ./rust_orchestrator 
 
   sub_service_1:
     build:
