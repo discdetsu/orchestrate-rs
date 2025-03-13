@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 import os
-from utils.mockup_data import generate_mockup_image
+from utils import generate_mockup_image
 
 app = Flask(__name__)
 

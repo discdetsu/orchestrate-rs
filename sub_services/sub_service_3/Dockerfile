@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install required libraries (Flask)
-RUN pip install flask
+RUN pip install flask numpy opencv-python-headless
 
 # Expose port for Flask app
 EXPOSE 5003
