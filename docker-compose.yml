@@ -16,6 +16,8 @@ services:
     volumes:
       - ./orchestrator/src/:/app/orchestrator/src/
     command: ./rust_orchestrator 
+    ports:
+      - 8080:8080
 
   sub_service_1:
     build:

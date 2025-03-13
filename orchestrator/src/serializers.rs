@@ -1,5 +1,12 @@
 use serde::{Deserialize, Serialize};
 
+// Response structure for the trigger endpoint
+#[derive(Serialize)]
+pub struct TriggerResponse {
+    pub status: String,
+    pub message: String,
+}
+    
 // Request structure (if needed for sub-services)
 #[derive(Serialize)]
 pub struct PredictionRequest {

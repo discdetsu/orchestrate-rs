@@ -25,5 +25,7 @@ WORKDIR /app
 # Copy the compiled binary from the builder stage
 COPY --from=builder /usr/src/app/target/release/rust_orchestrator .
 
+EXPOSE 8080
+
 # Specify the entry point for the container
 CMD ["./rust_orchestrator"]
