@@ -25,7 +25,9 @@ fn handle_connection(mut stream: TcpStream) {
         stream.write(response.as_bytes()).unwrap();
         stream.flush().unwrap();
     } else {
-        println!("Not a GET request!"); 
+        let response = "HTTP/1.1 405 Method Not Allowed\r\nAllow: GET\r\nContent-Length: 0\r\n\r\n";
+        stream.write(response.as_bytes()).unwrap();
+        stream.flush().unwrap();
     }
     
 }
