@@ -19,15 +19,16 @@ fn handle_connection(mut stream: TcpStream) {
 
     let get = b"GET / HTTP/1.1\r\n";
 
+    let (status_line, filename) =
     if buffer.starts_with(get){    
-        let contents = fs::read_to_string("index.html").unwrap();
-        let response = format!("HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}", contents.len(), contents);
-        stream.write(response.as_bytes()).unwrap();
-        stream.flush().unwrap();
+        ("HTTP/1.1 200 OK", "index.html")
     } else {
-        let response = "HTTP/1.1 405 Method Not Allowed\r\nAllow: GET\r\nContent-Length: 0\r\n\r\n";
-        stream.write(response.as_bytes()).unwrap();
-        stream.flush().unwrap();
-    }
+        ("HTTP/1.1 404 Not Found", "404.html")
+    };
+
+    let contents = fs::read_to_string(filename).unwrap();
+    let response = format!("{}\r\nContent-Length: {}\r\n\r\n{}", status_line, contents.len(), contents);
+    stream.write(response.as_bytes()).unwrap();
+    stream.flush().unwrap();
     
 }
